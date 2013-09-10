@@ -1,0 +1,31 @@
+{
+    "name": "soflomo/portfolio-i18n",
+    "description": "I18n module module for Soflomo\\Portfolio",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "keywords": [
+        "zf2",
+        "portfolio",
+        "i18n"
+    ],
+    "homepage": "https://github.com/Soflomo/PortfolioI18n",
+    "authors": [
+        {
+            "name": "Jurian Sluiman",
+            "email": "jurian@soflomo.com",
+            "homepage": "http://soflomo.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3.",
+        "soflomo/portfolio": "@dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Soflomo\\PortfolioI18n": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

@@ -1,0 +1,29 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Soflomo\PortfolioI18n\Entity\AbstractItemTranslation">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="locale" type="string" unique="false" nullable="false" />
+        <field name="title"  type="string" unique="false" nullable="false" />
+        <field name="lead"   type="text"   unique="false" nullable="true" />
+        <field name="body"   type="text"   unique="false" nullable="true" />
+
+        <indexes>
+            <index name="item_translations_lookup_idx" columns="locale,item_id" />
+        </indexes>
+
+        <unique-constraints>
+            <unique-constraint name="item_lookup_unique_idx" columns="locale,item_id" />
+        </unique-constraints>
+
+        <many-to-one field="item" target-entity="Soflomo\Portfolio\Entity\ItemInterface" inversed-by="translations">
+            <join-column name="item_id" referenced-column-name="id" on-delete="cascade" />
+        </many-to-one>
+    </mapped-superclass>
+</doctrine-mapping>
