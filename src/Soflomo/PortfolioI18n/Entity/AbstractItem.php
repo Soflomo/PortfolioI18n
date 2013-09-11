@@ -103,7 +103,7 @@ abstract class AbstractItem extends BaseAbstractItem
     public function getLocale()
     {
         if (null === $this->locale) {
-            $this->locale = Locale::getDefault();
+            $this->locale = $this->detectLocale();
         }
 
         return $this->locale;
@@ -126,6 +126,11 @@ abstract class AbstractItem extends BaseAbstractItem
 
         $this->locale = $locale;
         return $this;
+    }
+
+    protected function detectLocale()
+    {
+        return Locale::getDefault();
     }
 
     protected function getActiveTranslation()
@@ -175,6 +180,7 @@ abstract class AbstractItem extends BaseAbstractItem
      */
     public function setTitle($title)
     {
+        $this->setLocale($this->detectLocale());
         return $this->proxyTranslationSet('title', $title);
     }
 
@@ -191,6 +197,7 @@ abstract class AbstractItem extends BaseAbstractItem
      */
     public function setLead($lead)
     {
+        $this->setLocale($this->detectLocale());
         return $this->proxyTranslationSet('lead', $lead);
     }
 
@@ -207,6 +214,7 @@ abstract class AbstractItem extends BaseAbstractItem
      */
     public function setBody($body)
     {
+        $this->setLocale($this->detectLocale());
         return $this->proxyTranslationSet('body', $body);
     }
 
